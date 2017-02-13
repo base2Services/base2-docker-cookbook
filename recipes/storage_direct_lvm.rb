@@ -11,10 +11,9 @@
 # NOTE: requires an additional EBS volume
 
 lvm_volume_group "docker" do
-  physical_volumes ["/dev/xvdf"]
+  physical_volumes ["/dev/xvdf1"]
   thin_pool "thinpool" do
     size "95%VG"
-    filesystem "ext4"
     mount_point "/docker"
   end
 end
