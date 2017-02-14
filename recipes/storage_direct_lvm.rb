@@ -11,7 +11,7 @@
 # NOTE: requires an additional EBS volume
 
 lvm_volume_group "docker" do
-  physical_volumes ["/dev/xvdf1"]
+  physical_volumes ["/dev/xvdf"]
   thin_pool "thinpool" do
     size "95%VG"
     mount_point "/docker"
@@ -32,5 +32,5 @@ docker_service "default" do
     "dm.use_deferred_removal=true",
     "dm.use_deferred_deletion=true"
   ]
-  action :create
+  action [:create, :start]
 end
