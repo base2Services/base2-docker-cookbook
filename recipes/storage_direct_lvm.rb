@@ -14,7 +14,6 @@ lvm_volume_group "docker" do
   physical_volumes ["/dev/xvdf"]
   thin_pool "thinpool" do
     size "95%VG"
-    mount_point "/docker"
   end
 end
 
