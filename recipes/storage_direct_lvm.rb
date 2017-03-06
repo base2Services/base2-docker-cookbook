@@ -31,5 +31,8 @@ docker_service "default" do
     "dm.use_deferred_removal=true",
     "dm.use_deferred_deletion=true"
   ]
+  default_ulimit [
+    { 'Name' => 'nofile', 'Soft' => 10240, 'Hard' => 14336 }
+  ]
   action [:create, :start]
 end
