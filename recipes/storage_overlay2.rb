@@ -9,6 +9,11 @@
 
 # This uses the overlay2 stroage driver
 
+execute "Set IP Forwarding" do
+  command "echo 1 > /proc/sys/net/ipv4/ip_forward"
+  action :run
+end
+
 docker_service "default" do
   default_ulimit [
     "nofile=10240:14336"
