@@ -10,6 +10,11 @@
 # This uses the devicemapper stroage driver with a seperate LVM thinpool volume
 # NOTE: requires an additional EBS volume
 
+execute "Set IP Forwarding" do
+  command "echo 1 > /proc/sys/net/ipv4/ip_forward"
+  action :run
+end
+
 lvm_volume_group "docker" do
   physical_volumes ["/dev/xvdf"]
   thin_pool "thinpool" do
