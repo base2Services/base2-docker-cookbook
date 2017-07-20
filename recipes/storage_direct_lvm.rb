@@ -30,8 +30,12 @@ execute "apply_lvm_profile" do
   command "lvchange --metadataprofile docker-thinpool docker/thinpool"
 end
 
-docker_service "default" do
+yum_package "docker" do
   version node["base2-docker"]["docker"]["version"]
+  action :install
+end
+
+docker_service "default" do
   storage_opts [
     "dm.thinpooldev=/dev/mapper/docker-thinpool",
     "dm.use_deferred_removal=true",
@@ -40,5 +44,5 @@ docker_service "default" do
   default_ulimit [
     "nofile=10240:14336"
   ]
-  action [:create, :start]
+  action :start
 end
