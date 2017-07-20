@@ -7,4 +7,4 @@
 # All rights reserved - Do Not Redistribute
 #
 
-default["base2-docker"]["docker_version"]["amazon"]["2016.09"] = "1.12.6-2.19.amzn1"
+default["base2-docker"]["docker"]["version"] = "1.12.6-2.19.amzn1"

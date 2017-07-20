@@ -31,6 +31,7 @@ execute "apply_lvm_profile" do
 end
 
 docker_service "default" do
+  version node["base2-docker"]["docker"]["version"]
   storage_opts [
     "dm.thinpooldev=/dev/mapper/docker-thinpool",
     "dm.use_deferred_removal=true",
