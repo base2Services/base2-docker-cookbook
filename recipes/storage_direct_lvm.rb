@@ -11,7 +11,7 @@
 # NOTE: requires an additional EBS volume
 
 execute "Set IP Forwarding" do
-  command "echo 1 > /proc/sys/net/ipv4/ip_forward"
+  command "sed -i -E \"s/^ *net.ipv4.ip_forward += +.*$/net.ipv4.ip_forward = 1/g\" /etc/sysctl.conf"
   action :run
 end
 
@@ -31,6 +31,7 @@ execute "apply_lvm_profile" do
 end
 
 docker_service "default" do
+  version node["base2-docker"]["docker"]["version"]
   storage_opts [
     "dm.thinpooldev=/dev/mapper/docker-thinpool",
     "dm.use_deferred_removal=true",
